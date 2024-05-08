@@ -16,19 +16,28 @@
             <div class="mt-10">
                 <div class="text-2xl font-medium">Sign In</div>
 
-                <div class="mt-6">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-6">
                     <label data-tw-merge=""
                         class="inline-block mb-2 group-[.form-inline]:mb-2 group-[.form-inline]:sm:mb-0 group-[.form-inline]:sm:mr-5 group-[.form-inline]:sm:text-right">
                         Email*
                     </label>
-                    <input data-tw-merge="" type="text" placeholder="meryl.streep@left4code.com"
+                    <input formControlName="email" data-tw-merge="" type="email"
+                        placeholder="meryl.streep@left4code.com"
                         class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm shadow-sm placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 [&[type='file']]:border file:mr-4 file:py-2 file:px-4 file:rounded-l-md file:border-0 file:border-r-[1px] file:border-slate-100/10 file:text-sm file:font-semibold file:bg-slate-100 file:text-slate-500/70 hover:file:bg-200 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 block rounded-[0.6rem] border-slate-300/80 px-4 py-3.5">
+                    <!-- Error Message for Email -->
+                    <div class="text-red-400 my-1">
+
+                        <div *ngIf="hasError('email', 'required')">Email is required.</div>
+                        <div *ngIf="hasError('email', 'email')">Please enter a valid email address.</div>
+                    </div>
                     <label data-tw-merge=""
                         class="inline-block mb-2 group-[.form-inline]:mb-2 group-[.form-inline]:sm:mb-0 group-[.form-inline]:sm:mr-5 group-[.form-inline]:sm:text-right mt-4">
                         Password*
                     </label>
-                    <input data-tw-merge="" type="password" placeholder="************"
+                    <input data-tw-merge="" formControlName="password" type="password" placeholder="************"
                         class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm shadow-sm placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 [&[type='file']]:border file:mr-4 file:py-2 file:px-4 file:rounded-l-md file:border-0 file:border-r-[1px] file:border-slate-100/10 file:text-sm file:font-semibold file:bg-slate-100 file:text-slate-500/70 hover:file:bg-200 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 block rounded-[0.6rem] border-slate-300/80 px-4 py-3.5">
+                    <!-- Password Field Error Messages -->
+                    <div class="text-red-400 my-1" *ngIf="hasError('password', 'required')">Password is required.</div>
                     <div class="flex mt-4 text-xs text-slate-500 sm:text-sm">
                         <div class="flex items-center mr-auto">
                             <input data-tw-merge="" type="checkbox"
@@ -41,11 +50,11 @@
                         <a href="#">Forgot Password?</a>
                     </div>
                     <div class="mt-5 text-center xl:mt-8 xl:text-left">
-                        <button data-tw-merge=""
+                        <button data-tw-merge="" type="submit"
                             class="transition duration-200 border shadow-sm inline-flex items-center justify-center px-3 font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&:hover:not(:disabled)]:bg-opacity-90 [&:hover:not(:disabled)]:border-opacity-90 [&:not(button)]:text-center disabled:opacity-70 disabled:cursor-not-allowed bg-primary border-primary text-white dark:border-primary rounded-full w-full bg-gradient-to-r from-theme-1/70 to-theme-2/70 py-3.5 xl:mr-3">Sign
                             In</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -62,18 +71,21 @@
                 Embrace Excellence <br> in Managing Your Leaves
             </div>
             <div class="mt-5 text-base leading-relaxed text-white/70 xl:text-lg">
-                Explore the possibilities with <b>LeaveLogic</b>, where we offer meticulously designed, easy-to-use systems for
+                Explore the possibilities with <b>LeaveLogic</b>, where we offer meticulously designed, easy-to-use
+                systems for
                 managing your leaves with advanced features. Your journey to effortless leave management starts here!
             </div>
             <div class="flex flex-col gap-3 mt-10 xl:flex-row xl:items-center">
                 <div class="flex items-center">
                     <div class="image-fit zoom-in h-9 w-9 2xl:h-11 2xl:w-11">
-                        <img data-placement="top" title="Meryl Streep" src="../../assets/dist/images/users/user2-50x50.jpg"
+                        <img data-placement="top" title="Meryl Streep"
+                            src="../../assets/dist/images/users/user2-50x50.jpg"
                             alt="Tailwise - Admin Dashboard Template"
                             class="tooltip cursor-pointer rounded-full border-[3px] border-white/50">
                     </div>
                     <div class="-ml-3 image-fit zoom-in h-9 w-9 2xl:h-11 2xl:w-11">
-                        <img data-placement="top" title="Cate Blanchett" src="../../assets/dist/images/users/user8-50x50.jpg"
+                        <img data-placement="top" title="Cate Blanchett"
+                            src="../../assets/dist/images/users/user8-50x50.jpg"
                             alt="Tailwise - Admin Dashboard Template"
                             class="tooltip cursor-pointer rounded-full border-[3px] border-white/50">
                     </div>
@@ -83,7 +95,8 @@
                             class="tooltip cursor-pointer rounded-full border-[3px] border-white/50">
                     </div>
                     <div class="-ml-3 image-fit zoom-in h-9 w-9 2xl:h-11 2xl:w-11">
-                        <img data-placement="top" title="Angelina Jolie" src="../../assets/dist/images/users/user4-50x50.jpg"
+                        <img data-placement="top" title="Angelina Jolie"
+                            src="../../assets/dist/images/users/user4-50x50.jpg"
                             alt="Tailwise - Admin Dashboard Template"
                             class="tooltip cursor-pointer rounded-full border-[3px] border-white/50">
                     </div>
@@ -94,13 +107,3 @@
         </div>
     </div>
 </div>
-<!-- BEGIN: Vendor JS Assets-->
-<script src="../../assets/dist/js/vendors/dom.js"></script>
-<script src="../../assets/dist/js/vendors/tailwind-merge.js"></script>
-<script src="../../assets/dist/js/vendors/lucide.js"></script>
-<script src="../../assets/dist/js/vendors/alert.js"></script>
-<script src="../../assets/dist/js/vendors/tippy.js"></script>
-<script src="../../assets/dist/js/vendors/modal.js"></script>
-<script src="../../assets/dist/js/components/base/theme-color.js"></script>
-<script src="../../assets/dist/js/components/base/lucide.js"></script>
-<script src="../../assets/dist/js/components/base/tippy.js"></script> <!-- END: Vendor JS Assets-->
